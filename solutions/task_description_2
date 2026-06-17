@@ -1,0 +1,25 @@
+Определить, в каком месяце была максимальная выручка.
+
+Решение:
+
+SELECT 
+    EXTRACT(MONTH FROM order_date) AS month_number,
+    TO_CHAR(order_date, 'Month') AS month_name,
+    COUNT(*) AS order_count,
+    SUM(total_amount) AS revenue,
+    AVG(total_amount) AS avg_check
+FROM orders
+WHERE status NOT IN ('cancelled')
+GROUP BY EXTRACT(MONTH FROM order_date), TO_CHAR(order_date, 'Month')
+ORDER BY revenue DESC
+LIMIT 1;
+
+Пояснение:
+
+EXTRACT(MONTH) извлекает номер месяца
+
+TO_CHAR форматирует название месяца на русском
+
+GROUP BY группирует данные по месяцам
+
+Сортировка по выручке для поиска максимума
