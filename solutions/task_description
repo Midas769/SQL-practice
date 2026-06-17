@@ -19,3 +19,13 @@ INNER JOIN users u ON o.user_id = u.id
 WHERE o.status NOT IN ('cancelled')
 ORDER BY o.total_amount DESC
 LIMIT 5;
+
+Пояснение:
+
+Использован INNER JOIN для связи заказов с пользователями
+
+Исключены отмененные заказы
+
+Сортировка по убыванию суммы
+
+LIMIT 5 ограничивает количество записей
