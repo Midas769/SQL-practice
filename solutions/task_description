@@ -1,0 +1,21 @@
+# 📝 Решение задач по SQL
+
+## Задача 1: Найти топ-5 самых дорогих заказов
+
+**Постановка:**
+Вывести 5 заказов с максимальной суммой, включая имя пользователя и дату заказа.
+
+**Решение:**
+
+```sql
+SELECT 
+    o.id AS order_id,
+    u.first_name || ' ' || u.last_name AS customer,
+    o.order_date,
+    o.total_amount,
+    o.status
+FROM orders o
+INNER JOIN users u ON o.user_id = u.id
+WHERE o.status NOT IN ('cancelled')
+ORDER BY o.total_amount DESC
+LIMIT 5;
